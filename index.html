@@ -108,6 +108,60 @@
     .btn-primary:active  { transform: translateY(0); }
     .btn-primary:focus-visible { outline: 2px solid var(--blue-bright); outline-offset: 3px; }
 
+    /* ── HERO GLOW BUTTON ── */
+    @keyframes hero-glow-pulse {
+      0%, 100% {
+        box-shadow:
+          0 0 12px rgba(34,120,255,.7),
+          0 0 28px rgba(34,120,255,.4),
+          0 0 60px rgba(34,120,255,.18),
+          0 6px 24px rgba(26,111,255,.55),
+          inset 0 1px 0 rgba(255,255,255,.18);
+      }
+      50% {
+        box-shadow:
+          0 0 20px rgba(34,120,255,.95),
+          0 0 48px rgba(34,120,255,.6),
+          0 0 100px rgba(34,120,255,.28),
+          0 6px 32px rgba(26,111,255,.7),
+          inset 0 1px 0 rgba(255,255,255,.18);
+      }
+    }
+    @keyframes hero-shimmer {
+      0%   { transform: translateX(-120%) skewX(-18deg); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { transform: translateX(320%) skewX(-18deg); opacity: 0; }
+    }
+    .btn-hero-glow {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #3a8fff 0%, #1a6fff 50%, #0050cc 100%);
+      border: 1px solid rgba(120,190,255,.55);
+      animation: hero-glow-pulse 2.6s ease-in-out infinite;
+      letter-spacing: 0.025em;
+    }
+    .btn-hero-glow::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: 0;
+      width: 40%; height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+      animation: hero-shimmer 3.4s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .btn-hero-glow:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 0 28px rgba(34,120,255,1),
+        0 0 60px rgba(34,120,255,.7),
+        0 0 120px rgba(34,120,255,.35),
+        0 10px 40px rgba(26,111,255,.8),
+        inset 0 1px 0 rgba(255,255,255,.22);
+      animation-play-state: paused;
+    }
+    .btn-hero-glow:active { transform: translateY(0); }
+
     .btn-ghost {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
       font-family: 'Montserrat', sans-serif; font-size: .875rem; font-weight: 500;
@@ -351,7 +405,7 @@
 
     <!-- CTAs -->
     <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:52px;">
-      <a href="#join" class="btn-primary" style="padding:14px 32px;">
+      <a href="#join" class="btn-primary btn-hero-glow" style="padding:14px 32px;">
         Join the Society →
       </a>
       <a href="#programs" class="btn-ghost" style="padding:14px 28px;">Explore Programs</a>
